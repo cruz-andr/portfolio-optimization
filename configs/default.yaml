@@ -1,0 +1,22 @@
+# Hyperparameters from the paper
+training:
+  num_iterations: 3000000
+  batch_size: 1024
+  replay_memory_size: 300000
+  evaluation_interval: 10000
+  gradient_step_interval: 20
+
+agent:
+  discount_factor: 0.9
+  epsilon: 0.3
+
+network:
+  hidden_layers: 2
+  neurons: [32, 64, 128]
+
+environment:
+  transaction_cost: 0.0005
+
+data:
+  train_end: "2019-01-01"
+  validation_end: "2020-01-01"
