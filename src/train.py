@@ -32,6 +32,7 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, '../src')
 from environment import TransactionEnvironment
 from regime import prepare_regimes
+from factors import add_factor_ranks, FACTOR_COLS
 
 
 class QNetwork(nn.Module):
@@ -87,7 +88,7 @@ FUNDAMENTAL_COLS = [
 
 PRICE_COLS = ['close']
 
-FEATURE_COLS = TECHNICAL_COLS + FUNDAMENTAL_COLS + PRICE_COLS
+FEATURE_COLS = TECHNICAL_COLS + FUNDAMENTAL_COLS + PRICE_COLS + FACTOR_COLS
 
 
 def prepare_data(parquet_path='../data/stock_data.parquet'):
@@ -96,7 +97,8 @@ def prepare_data(parquet_path='../data/stock_data.parquet'):
     print(f"Date range: {df['date'].min()} to {df['date'].max()}")
 
     before = len(df)
-    df = df.dropna(subset=FEATURE_COLS)
+    BASE_FEATURE_COLS = TECHNICAL_COLS + FUNDAMENTAL_COLS + PRICE_COLS
+    df = df.dropna(subset=BASE_FEATURE_COLS)
     print(f"Dropped {before - len(df)} NaN rows ({len(df)} remaining)")
 
     counts = df.groupby('ticker').size()
@@ -124,10 +126,16 @@ def prepare_data(parquet_path='../data/stock_data.parquet'):
     print(f"Train: {len(df_train)}, Val: {len(df_val)}, Test: {len(df_test)}")
 
     # paper: z-score normalize using training set statistics
-    train_mean = df_train[FEATURE_COLS].mean()
-    train_std = df_train[FEATURE_COLS].std().replace(0, 1)
+    BASE_FEATURE_COLS = TECHNICAL_COLS + FUNDAMENTAL_COLS + PRICE_COLS
+    train_mean = df_train[BASE_FEATURE_COLS].mean()
+    train_std = df_train[BASE_FEATURE_COLS].std().replace(0, 1)
     for split in [df_train, df_val, df_test]:
-        split[FEATURE_COLS] = (split[FEATURE_COLS] - train_mean) / train_std
+        split[BASE_FEATURE_COLS] = (split[BASE_FEATURE_COLS] - train_mean) / train_std
+
+
+    df_train = add_factor_ranks(df_train)
+    df_val   = add_factor_ranks(df_val)
+    df_test  = add_factor_ranks(df_test)
 
     # paper eq. 3: cash reward = cross-sectional mean return
     for split in [df_train, df_val, df_test]:
@@ -157,7 +165,7 @@ def train_agent(
     regime_weights=None
 ):
     env = TransactionEnvironment(df_train, feature_cols, transaction_cost, reward_fn=reward_fn, sharpe_lambda=sharpe_lambda, regime_weights=regime_weights)
-    val_env = TransactionEnvironment(df_train, feature_cols, transaction_cost, reward_fn=reward_fn, sharpe_lambda=sharpe_lambda, regime_weights=regime_weights)
+    val_env = TransactionEnvironment(df_val, feature_cols, transaction_cost, reward_fn=reward_fn, sharpe_lambda=sharpe_lambda, regime_weights=regime_weights)
     state_dim = len(feature_cols) + 2 
     q_net = QNetwork(state_dim, hidden_dim)
     target_net = QNetwork(state_dim, hidden_dim)
@@ -354,6 +362,39 @@ def compute_benchmarks(df, tc=0.0005, window=5):
 
     return np.array(mom_d), np.array(rev_d)
 
+def compute_metrics(daily_returns, bh_d=None, mom_d=None, rev_d=None, label=""):
+    cr = np.prod(1 + daily_returns) - 1
+    mean = np.mean(daily_returns) * 252
+    std = np.std(daily_returns) * np.sqrt(252)
+    sharpe = mean / std if std > 0 else 0.0
+    cumulative = np.cumprod(1 + daily_returns)
+    peak = np.maximum.accumulate(cumulative)
+    drawdown = (cumulative - peak) / peak
+    max_dd = drawdown.min()
+    metrics = {
+        'label': label,
+        'cumulative_return': cr,
+        'annualized_sharpe': sharpe,
+        'max_drawdown': max_dd,
+    }
+    if bh_d is not None:
+        metrics['win_rate_vs_bh'] = np.mean(daily_returns > bh_d)
+    if mom_d is not None:
+        metrics['win_rate_vs_mom'] = np.mean(daily_returns > mom_d)
+    if rev_d is not None:
+        metrics['win_rate_vs_rev'] = np.mean(daily_returns > rev_d)
+    return metrics
+
+
+def print_metrics_table(metrics_list):
+    print(f"\n{'Strategy':<20} {'Cum. Return':>12} {'Sharpe':>8} {'Max DD':>10} {'WR vs BH':>10} {'WR vs Mom':>10} {'WR vs Rev':>10}")
+    print("-" * 82)
+    for m in metrics_list:
+        wr_bh  = f"{m['win_rate_vs_bh']:>9.1%}"  if 'win_rate_vs_bh'  in m else f"{'N/A':>9}"
+        wr_mom = f"{m['win_rate_vs_mom']:>9.1%}" if 'win_rate_vs_mom' in m else f"{'N/A':>9}"
+        wr_rev = f"{m['win_rate_vs_rev']:>9.1%}" if 'win_rate_vs_rev' in m else f"{'N/A':>9}"
+        print(f"{m['label']:<20} {m['cumulative_return']:>11.2%} {m['annualized_sharpe']:>8.2f} {m['max_drawdown']:>10.2%} {wr_bh} {wr_mom} {wr_rev}")
+
 
 def plot_results(agent_d, bh_d, mom_d, rev_d, dates, tc_label):
     a_cum  = np.cumprod(1 + agent_d) - 1
@@ -389,7 +430,7 @@ if __name__ == '__main__':
     print("PoC v2: Paper-Faithful DQN (Small Scale)")
     print("=" * 55)
 
-    df_train, df_val, df_test, fcols = prepare_data()
+    df_train, df_val, df_test, fcols, regime_weights = prepare_data()
 
     TC = 0.0005
     HIDDEN_DIMS = [32, 64, 128]  # paper: ensemble of 3
@@ -408,6 +449,7 @@ if __name__ == '__main__':
                 hidden_dim=hdim,
                 reward_fn=reward_fn,
                 sharpe_lambda=sharpe_lambda,
+                regime_weights=regime_weights,
             )
             ensemble.append(net)
 
@@ -420,6 +462,15 @@ if __name__ == '__main__':
     print(f"{'='*55}")
 
     a_d, bh_d, dates, diag = evaluate_portfolio(df_test, ensemble, fcols, tc=TC)
+
+    metrics = [
+        compute_metrics(a_d, bh_d, mom_d, rev_d, label="DQN Agent"),
+        compute_metrics(bh_d, label="Buy & Hold"),
+        compute_metrics(mom_d, label="Momentum"),
+        compute_metrics(rev_d, label="Reversion"),
+    ]
+    print_metrics_table(metrics)
+
     mom_d, rev_d = compute_benchmarks(df_test, tc=TC)
     plot_results(a_d, bh_d, mom_d, rev_d, dates, '5bps')
 
