@@ -29,7 +29,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-sys.path.insert(0, '../src')
+sys.path.insert(0, os.path.dirname(__file__))
 from environment import TransactionEnvironment
 from regime import prepare_regimes
 from factors import add_factor_ranks, FACTOR_COLS
@@ -51,7 +51,7 @@ class QNetwork(nn.Module):
 
 
 class ReplayBuffer:
-    def __init__(self, capacity=300_000):
+    def __init__(self, capacity=50_000):
         self.buf = deque(maxlen=capacity)
 
     def push(self, s, a, r, ns, done):
@@ -176,7 +176,7 @@ def train_agent(
     target_net.load_state_dict(q_net.state_dict())
 
     optimizer = optim.Adam(q_net.parameters(), lr=5e-4)
-    buffer = ReplayBuffer(capacity=300_000)
+    buffer = ReplayBuffer(capacity=50_000)
 
     best_val_cr = 0.0
     best_params = None
@@ -420,7 +420,7 @@ def plot_results(agent_d, bh_d, mom_d, rev_d, dates, tc_label):
     ax.tick_params(axis='x', rotation=45)
     ax.xaxis.set_major_locator(plt.MaxNLocator(12))
     fig.tight_layout()
-    fig.savefig(f'../results/{tc_label}.png', dpi=150)
+    fig.savefig(f'results/{tc_label}.png', dpi=150)
     plt.show()
     print(f"Agent CR:     {a_cum[-1]:+.2%}")
     print(f"Buy&Hold CR:  {b_cum[-1]:+.2%}")
@@ -438,7 +438,14 @@ if __name__ == '__main__':
     HIDDEN_DIMS = [32, 64, 128]
     DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'stock_data.parquet')
 
-    for use_factors in [False, True]:
+    CONFIGS = [
+    (False, "base",          0.1),
+    (False, "sharpe",        0.1),
+    (False, "sharpe+regime", 0.1),
+    (True,  "sharpe+regime", 0.1),
+]
+
+    for use_factors, reward_fn, sharpe_lambda in CONFIGS:
         factor_label = "factors" if use_factors else "no_factors"
         print(f"\n{'='*55}")
         print(f"Run: {factor_label}")
@@ -447,43 +454,41 @@ if __name__ == '__main__':
         df_train, df_val, df_test, fcols, regime_weights = prepare_data(
             parquet_path=DATA_PATH, use_factors=use_factors
         )
+        ensemble = []
+        for hdim in HIDDEN_DIMS:
+            print(f"\n{'-'*55}")
+            print(f"Training: {factor_label} | {reward_fn} | hidden_dim={hdim}")
+            print(f"{'-'*55}")
 
-        for reward_fn, sharpe_lambda in [("base", 0.1), ("sharpe", 0.1), ("sharpe+regime", 0.1)]:
-            ensemble = []
-            for hdim in HIDDEN_DIMS:
-                print(f"\n{'-'*55}")
-                print(f"Training: {factor_label} | {reward_fn} | hidden_dim={hdim}")
-                print(f"{'-'*55}")
+            net, _ = train_agent(
+                df_train, df_val, fcols,
+                transaction_cost=TC,
+                n_steps=500_000,
+                hidden_dim=hdim,
+                reward_fn=reward_fn,
+                sharpe_lambda=sharpe_lambda,
+                regime_weights=regime_weights,
+            )
+            ensemble.append(net)
 
-                net, _ = train_agent(
-                    df_train, df_val, fcols,
-                    transaction_cost=TC,
-                    n_steps=500_000,
-                    hidden_dim=hdim,
-                    reward_fn=reward_fn,
-                    sharpe_lambda=sharpe_lambda,
-                    regime_weights=regime_weights,
-                )
-                ensemble.append(net)
+            os.makedirs('results', exist_ok=True)
+            torch.save(net.state_dict(), f'results/qnet_{factor_label}_{reward_fn}_{hdim}.pt')
 
-                os.makedirs('../results', exist_ok=True)
-                torch.save(net.state_dict(), f'../results/qnet_{factor_label}_{reward_fn}_{hdim}.pt')
+        # evaluate this config
+        a_d, bh_d, dates, diag = evaluate_portfolio(df_test, ensemble, fcols, tc=TC)
+        mom_d, rev_d = compute_benchmarks(df_test, tc=TC)
 
-            # evaluate this config
-            a_d, bh_d, dates, diag = evaluate_portfolio(df_test, ensemble, fcols, tc=TC)
-            mom_d, rev_d = compute_benchmarks(df_test, tc=TC)
+        print(f"\nResults: {factor_label} | {reward_fn}")
+        metrics = [
+            compute_metrics(a_d, bh_d=bh_d, mom_d=mom_d, rev_d=rev_d, label="DQN Agent"),
+            compute_metrics(bh_d, label="Buy & Hold"),
+            compute_metrics(mom_d, label="Momentum"),
+            compute_metrics(rev_d, label="Reversion"),
+        ]
+        print_metrics_table(metrics)
+        plot_results(a_d, bh_d, mom_d, rev_d, dates, f'{factor_label}_{reward_fn}')
 
-            print(f"\nResults: {factor_label} | {reward_fn}")
-            metrics = [
-                compute_metrics(a_d, bh_d=bh_d, mom_d=mom_d, rev_d=rev_d, label="DQN Agent"),
-                compute_metrics(bh_d, label="Buy & Hold"),
-                compute_metrics(mom_d, label="Momentum"),
-                compute_metrics(rev_d, label="Reversion"),
-            ]
-            print_metrics_table(metrics)
-            plot_results(a_d, bh_d, mom_d, rev_d, dates, f'{factor_label}_{reward_fn}')
-
-            print(f"\nPortfolio diagnostics:")
-            print(f"  Avg stocks picked: {np.mean(diag['n_invested']):.1f} / {np.mean(diag['n_total']):.1f}")
-            print(f"  Days with 0 picks: {sum(1 for n in diag['n_invested'] if n == 0)}")
-            print(f"  Days with <5 picks: {sum(1 for n in diag['n_invested'] if 0 < n < 5)}")
+        print(f"\nPortfolio diagnostics:")
+        print(f"  Avg stocks picked: {np.mean(diag['n_invested']):.1f} / {np.mean(diag['n_total']):.1f}")
+        print(f"  Days with 0 picks: {sum(1 for n in diag['n_invested'] if n == 0)}")
+        print(f"  Days with <5 picks: {sum(1 for n in diag['n_invested'] if 0 < n < 5)}")

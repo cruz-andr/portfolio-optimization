@@ -1,0 +1,991 @@
+=======================================================
+PoC v2: Paper-Faithful DQN (Small Scale)
+=======================================================
+
+=======================================================
+Run: no_factors
+=======================================================
+Loaded 6400263 rows, 3214 stocks
+Date range: 2010-01-04 to 2021-06-30
+Dropped 2335038 NaN rows (4065225 remaining)
+Stocks with 250+ days: 1992
+PoC stocks: 50
+Total rows: 103446
+Train: 82199, Val: 9039, Test: 12208
+  HMM iter   1 | log-likelihood: -20638.2363 | improvement: inf
+  HMM iter   2 | log-likelihood: -5979.7803 | improvement: 14658.456055
+  HMM iter   3 | log-likelihood: -5403.7056 | improvement: 576.074707
+  HMM iter   4 | log-likelihood: -5101.8032 | improvement: 301.902344
+  HMM iter   5 | log-likelihood: -4997.3232 | improvement: 104.479980
+  HMM iter   6 | log-likelihood: -4884.3770 | improvement: 112.946289
+  HMM iter   7 | log-likelihood: -4840.4043 | improvement: 43.972656
+  HMM iter   8 | log-likelihood: -4822.2007 | improvement: 18.203613
+  HMM iter   9 | log-likelihood: -4810.5918 | improvement: 11.608887
+  HMM iter  10 | log-likelihood: -4801.0342 | improvement: 9.557617
+  HMM iter  11 | log-likelihood: -4792.4614 | improvement: 8.572754
+  HMM iter  12 | log-likelihood: -4784.7188 | improvement: 7.742676
+  HMM iter  13 | log-likelihood: -4778.0957 | improvement: 6.623047
+  HMM iter  14 | log-likelihood: -4772.9272 | improvement: 5.168457
+  HMM iter  15 | log-likelihood: -4768.9590 | improvement: 3.968262
+  HMM iter  16 | log-likelihood: -4766.2417 | improvement: 2.717285
+  HMM iter  17 | log-likelihood: -4764.1978 | improvement: 2.043945
+  HMM iter  18 | log-likelihood: -4762.5869 | improvement: 1.610840
+  HMM iter  19 | log-likelihood: -4761.4468 | improvement: 1.140137
+  HMM iter  20 | log-likelihood: -4760.4072 | improvement: 1.039551
+  HMM iter  21 | log-likelihood: -4759.6562 | improvement: 0.750977
+  HMM iter  22 | log-likelihood: -4759.0620 | improvement: 0.594238
+  HMM iter  23 | log-likelihood: -4758.5801 | improvement: 0.481934
+  HMM iter  24 | log-likelihood: -4758.1440 | improvement: 0.436035
+  HMM iter  25 | log-likelihood: -4757.8027 | improvement: 0.341309
+  HMM iter  26 | log-likelihood: -4757.5449 | improvement: 0.257812
+  HMM iter  27 | log-likelihood: -4757.2168 | improvement: 0.328125
+  HMM iter  28 | log-likelihood: -4757.1172 | improvement: 0.099609
+  HMM iter  29 | log-likelihood: -4756.9409 | improvement: 0.176270
+  HMM iter  30 | log-likelihood: -4756.8008 | improvement: 0.140137
+  HMM iter  31 | log-likelihood: -4756.6123 | improvement: 0.188477
+  HMM iter  32 | log-likelihood: -4756.5229 | improvement: 0.089355
+  HMM iter  33 | log-likelihood: -4756.4585 | improvement: 0.064453
+  HMM iter  34 | log-likelihood: -4756.4092 | improvement: 0.049316
+  HMM iter  35 | log-likelihood: -4756.3662 | improvement: 0.042969
+  HMM iter  36 | log-likelihood: -4756.2954 | improvement: 0.070801
+  HMM iter  37 | log-likelihood: -4756.2310 | improvement: 0.064453
+  HMM iter  38 | log-likelihood: -4756.3257 | improvement: -0.094727
+  Converged at iteration 38
+
+Learned state centers (normalized scale):
+  State 0: mean_ret=-0.085, vol=0.178
+  State 1: mean_ret=0.216, vol=1.358
+  State 2: mean_ret=0.026, vol=-0.420
+Regime distribution (train): {0: 32983, 1: 4875, 2: 44341}
+Regime weights: [1.1707189083099365, 2.0, 0.5]
+State dim: 32 features + 1 dummy = 33
+
+-------------------------------------------------------
+Training: no_factors | base | hidden_dim=32
+-------------------------------------------------------
+Step   10000 | Val CR: -25.42% | Best: +0.00%
+Step   20000 | Val CR: -28.07% | Best: +0.00%
+Step   30000 | Val CR: -35.61% | Best: +0.00%
+Step   40000 | Val CR: -1.68% | Best: +0.00%
+Step   50000 | Val CR: -63.87% | Best: +0.00%
+Step   60000 | Val CR: +89.94% | Best: +89.94% ::::: new best
+Step   70000 | Val CR: +130.51% | Best: +130.51% ::::: new best
+Step   80000 | Val CR: +163.63% | Best: +163.63% ::::: new best
+Step   90000 | Val CR: +10.98% | Best: +163.63%
+Step  100000 | Val CR: +31.70% | Best: +163.63%
+Step  110000 | Val CR: -27.29% | Best: +163.63%
+Step  120000 | Val CR: -23.09% | Best: +163.63%
+Step  130000 | Val CR: -3.44% | Best: +163.63%
+Step  140000 | Val CR: -41.22% | Best: +163.63%
+Step  150000 | Val CR: -56.76% | Best: +163.63%
+Step  160000 | Val CR: -45.93% | Best: +163.63%
+Step  170000 | Val CR: -41.75% | Best: +163.63%
+Step  180000 | Val CR: -8.85% | Best: +163.63%
+Step  190000 | Val CR: +43.28% | Best: +163.63%
+Step  200000 | Val CR: +17.75% | Best: +163.63%
+Step  210000 | Val CR: +46.48% | Best: +163.63%
+Step  220000 | Val CR: +23.18% | Best: +163.63%
+Step  230000 | Val CR: -32.69% | Best: +163.63%
+Step  240000 | Val CR: -37.09% | Best: +163.63%
+Step  250000 | Val CR: -60.00% | Best: +163.63%
+Step  260000 | Val CR: -47.00% | Best: +163.63%
+Step  270000 | Val CR: -28.34% | Best: +163.63%
+Step  280000 | Val CR: -45.29% | Best: +163.63%
+Step  290000 | Val CR: -21.40% | Best: +163.63%
+Step  300000 | Val CR: +15.23% | Best: +163.63%
+Step  310000 | Val CR: -8.34% | Best: +163.63%
+Step  320000 | Val CR: -35.16% | Best: +163.63%
+Step  330000 | Val CR: -33.77% | Best: +163.63%
+Step  340000 | Val CR: -6.03% | Best: +163.63%
+Step  350000 | Val CR: -5.28% | Best: +163.63%
+Step  360000 | Val CR: +58.04% | Best: +163.63%
+Step  370000 | Val CR: +1.40% | Best: +163.63%
+Step  380000 | Val CR: -12.32% | Best: +163.63%
+Step  390000 | Val CR: +2.61% | Best: +163.63%
+Step  400000 | Val CR: -19.02% | Best: +163.63%
+Step  410000 | Val CR: -19.10% | Best: +163.63%
+Step  420000 | Val CR: -30.70% | Best: +163.63%
+Step  430000 | Val CR: -22.28% | Best: +163.63%
+Step  440000 | Val CR: -33.16% | Best: +163.63%
+Step  450000 | Val CR: -34.87% | Best: +163.63%
+Step  460000 | Val CR: -43.38% | Best: +163.63%
+Step  470000 | Val CR: -42.79% | Best: +163.63%
+Step  480000 | Val CR: -50.15% | Best: +163.63%
+Step  490000 | Val CR: -61.40% | Best: +163.63%
+Step  500000 | Val CR: -45.42% | Best: +163.63%
+
+Restored best model (Val CR: +163.63%)
+
+-------------------------------------------------------
+Training: no_factors | base | hidden_dim=64
+-------------------------------------------------------
+Step   10000 | Val CR: -37.75% | Best: +0.00%
+Step   20000 | Val CR: +5.21% | Best: +5.21% ::::: new best
+Step   30000 | Val CR: +114.23% | Best: +114.23% ::::: new best
+Step   40000 | Val CR: +84.43% | Best: +114.23%
+Step   50000 | Val CR: +146.34% | Best: +146.34% ::::: new best
+Step   60000 | Val CR: +51.97% | Best: +146.34%
+Step   70000 | Val CR: +91.86% | Best: +146.34%
+Step   80000 | Val CR: +26.16% | Best: +146.34%
+Step   90000 | Val CR: +252.95% | Best: +252.95% ::::: new best
+Step  100000 | Val CR: +97.02% | Best: +252.95%
+Step  110000 | Val CR: -41.80% | Best: +252.95%
+Step  120000 | Val CR: -10.81% | Best: +252.95%
+Step  130000 | Val CR: +121.73% | Best: +252.95%
+Step  140000 | Val CR: -28.71% | Best: +252.95%
+Step  150000 | Val CR: +58.10% | Best: +252.95%
+Step  160000 | Val CR: +108.76% | Best: +252.95%
+Step  170000 | Val CR: -37.79% | Best: +252.95%
+Step  180000 | Val CR: -26.19% | Best: +252.95%
+Step  190000 | Val CR: -13.44% | Best: +252.95%
+Step  200000 | Val CR: -4.73% | Best: +252.95%
+Step  210000 | Val CR: -33.78% | Best: +252.95%
+Step  220000 | Val CR: -58.54% | Best: +252.95%
+Step  230000 | Val CR: -17.07% | Best: +252.95%
+Step  240000 | Val CR: -25.18% | Best: +252.95%
+Step  250000 | Val CR: -27.38% | Best: +252.95%
+Step  260000 | Val CR: -34.38% | Best: +252.95%
+Step  270000 | Val CR: -15.03% | Best: +252.95%
+Step  280000 | Val CR: +165.00% | Best: +252.95%
+Step  290000 | Val CR: +132.65% | Best: +252.95%
+Step  300000 | Val CR: +99.80% | Best: +252.95%
+Step  310000 | Val CR: -30.70% | Best: +252.95%
+Step  320000 | Val CR: +3.76% | Best: +252.95%
+Step  330000 | Val CR: -31.04% | Best: +252.95%
+Step  340000 | Val CR: +125.98% | Best: +252.95%
+Step  350000 | Val CR: +16.40% | Best: +252.95%
+Step  360000 | Val CR: +5.48% | Best: +252.95%
+Step  370000 | Val CR: +10.18% | Best: +252.95%
+Step  380000 | Val CR: +31.92% | Best: +252.95%
+Step  390000 | Val CR: -13.91% | Best: +252.95%
+Step  400000 | Val CR: +46.96% | Best: +252.95%
+Step  410000 | Val CR: +16.98% | Best: +252.95%
+Step  420000 | Val CR: -4.44% | Best: +252.95%
+Step  430000 | Val CR: -0.26% | Best: +252.95%
+Step  440000 | Val CR: -33.53% | Best: +252.95%
+Step  450000 | Val CR: +71.97% | Best: +252.95%
+Step  460000 | Val CR: +93.96% | Best: +252.95%
+Step  470000 | Val CR: +77.63% | Best: +252.95%
+Step  480000 | Val CR: +67.23% | Best: +252.95%
+Step  490000 | Val CR: +73.85% | Best: +252.95%
+Step  500000 | Val CR: +16.30% | Best: +252.95%
+
+Restored best model (Val CR: +252.95%)
+
+-------------------------------------------------------
+Training: no_factors | base | hidden_dim=128
+-------------------------------------------------------
+Step   10000 | Val CR: +0.39% | Best: +0.39% ::::: new best
+Step   20000 | Val CR: +13.90% | Best: +13.90% ::::: new best
+Step   30000 | Val CR: +95.66% | Best: +95.66% ::::: new best
+Step   40000 | Val CR: +44.43% | Best: +95.66%
+Step   50000 | Val CR: +28.60% | Best: +95.66%
+Step   60000 | Val CR: +17.02% | Best: +95.66%
+Step   70000 | Val CR: -15.29% | Best: +95.66%
+Step   80000 | Val CR: -12.20% | Best: +95.66%
+Step   90000 | Val CR: +28.67% | Best: +95.66%
+Step  100000 | Val CR: -36.74% | Best: +95.66%
+Step  110000 | Val CR: -48.77% | Best: +95.66%
+Step  120000 | Val CR: +21.87% | Best: +95.66%
+Step  130000 | Val CR: -24.72% | Best: +95.66%
+Step  140000 | Val CR: -24.21% | Best: +95.66%
+Step  150000 | Val CR: +18.79% | Best: +95.66%
+Step  160000 | Val CR: -37.92% | Best: +95.66%
+Step  170000 | Val CR: -34.21% | Best: +95.66%
+Step  180000 | Val CR: -58.68% | Best: +95.66%
+Step  190000 | Val CR: -56.83% | Best: +95.66%
+Step  200000 | Val CR: -70.03% | Best: +95.66%
+Step  210000 | Val CR: -3.47% | Best: +95.66%
+Step  220000 | Val CR: -10.36% | Best: +95.66%
+Step  230000 | Val CR: -49.23% | Best: +95.66%
+Step  240000 | Val CR: -18.85% | Best: +95.66%
+Step  250000 | Val CR: -46.78% | Best: +95.66%
+Step  260000 | Val CR: -40.29% | Best: +95.66%
+Step  270000 | Val CR: -58.69% | Best: +95.66%
+Step  280000 | Val CR: -44.37% | Best: +95.66%
+Step  290000 | Val CR: -33.38% | Best: +95.66%
+Step  300000 | Val CR: -29.87% | Best: +95.66%
+Step  310000 | Val CR: -53.15% | Best: +95.66%
+Step  320000 | Val CR: -21.77% | Best: +95.66%
+Step  330000 | Val CR: -25.16% | Best: +95.66%
+Step  340000 | Val CR: -15.30% | Best: +95.66%
+Step  350000 | Val CR: +53.46% | Best: +95.66%
+Step  360000 | Val CR: +60.24% | Best: +95.66%
+Step  370000 | Val CR: +46.43% | Best: +95.66%
+Step  380000 | Val CR: +54.89% | Best: +95.66%
+Step  390000 | Val CR: +34.72% | Best: +95.66%
+Step  400000 | Val CR: +11.98% | Best: +95.66%
+Step  410000 | Val CR: -50.76% | Best: +95.66%
+Step  420000 | Val CR: -8.08% | Best: +95.66%
+Step  430000 | Val CR: -31.78% | Best: +95.66%
+Step  440000 | Val CR: -25.12% | Best: +95.66%
+Step  450000 | Val CR: -53.94% | Best: +95.66%
+Step  460000 | Val CR: -58.52% | Best: +95.66%
+Step  470000 | Val CR: -52.17% | Best: +95.66%
+Step  480000 | Val CR: -43.62% | Best: +95.66%
+Step  490000 | Val CR: -46.73% | Best: +95.66%
+Step  500000 | Val CR: -48.73% | Best: +95.66%
+
+Restored best model (Val CR: +95.66%)
+
+Results: no_factors | base
+
+Strategy              Cum. Return   Sharpe     Max DD   WR vs BH  WR vs Mom  WR vs Rev
+----------------------------------------------------------------------------------
+DQN Agent                189.49%     1.52    -28.81%     44.6%     48.3%     45.1%
+Buy & Hold               114.52%     1.65    -31.62%       N/A       N/A       N/A
+Momentum                 -21.41%    -0.21    -62.46%       N/A       N/A       N/A
+Reversion                141.01%     1.60    -29.51%       N/A       N/A       N/A
+/Users/manueltorressantamaria/Library/CloudStorage/OneDrive-NortheasternUniversity/AI/Project/portfolio-optimization/src/train.py:424: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+Agent CR:     +189.49%
+Buy&Hold CR:  +114.52%
+Momentum CR:  -21.41%
+Reversion CR: +141.01%
+Excess vs BH: +74.98%
+
+Portfolio diagnostics:
+  Avg stocks picked: 7.7 / 32.4
+  Days with 0 picks: 0
+  Days with <5 picks: 63
+
+=======================================================
+Run: no_factors
+=======================================================
+Loaded 6400263 rows, 3214 stocks
+Date range: 2010-01-04 to 2021-06-30
+Dropped 2335038 NaN rows (4065225 remaining)
+Stocks with 250+ days: 1992
+PoC stocks: 50
+Total rows: 103446
+Train: 82199, Val: 9039, Test: 12208
+  HMM iter   1 | log-likelihood: -20638.2363 | improvement: inf
+  HMM iter   2 | log-likelihood: -5979.7803 | improvement: 14658.456055
+  HMM iter   3 | log-likelihood: -5403.7056 | improvement: 576.074707
+  HMM iter   4 | log-likelihood: -5101.8032 | improvement: 301.902344
+  HMM iter   5 | log-likelihood: -4997.3232 | improvement: 104.479980
+  HMM iter   6 | log-likelihood: -4884.3770 | improvement: 112.946289
+  HMM iter   7 | log-likelihood: -4840.4043 | improvement: 43.972656
+  HMM iter   8 | log-likelihood: -4822.2007 | improvement: 18.203613
+  HMM iter   9 | log-likelihood: -4810.5918 | improvement: 11.608887
+  HMM iter  10 | log-likelihood: -4801.0342 | improvement: 9.557617
+  HMM iter  11 | log-likelihood: -4792.4614 | improvement: 8.572754
+  HMM iter  12 | log-likelihood: -4784.7188 | improvement: 7.742676
+  HMM iter  13 | log-likelihood: -4778.0957 | improvement: 6.623047
+  HMM iter  14 | log-likelihood: -4772.9272 | improvement: 5.168457
+  HMM iter  15 | log-likelihood: -4768.9590 | improvement: 3.968262
+  HMM iter  16 | log-likelihood: -4766.2417 | improvement: 2.717285
+  HMM iter  17 | log-likelihood: -4764.1978 | improvement: 2.043945
+  HMM iter  18 | log-likelihood: -4762.5869 | improvement: 1.610840
+  HMM iter  19 | log-likelihood: -4761.4468 | improvement: 1.140137
+  HMM iter  20 | log-likelihood: -4760.4072 | improvement: 1.039551
+  HMM iter  21 | log-likelihood: -4759.6562 | improvement: 0.750977
+  HMM iter  22 | log-likelihood: -4759.0620 | improvement: 0.594238
+  HMM iter  23 | log-likelihood: -4758.5801 | improvement: 0.481934
+  HMM iter  24 | log-likelihood: -4758.1440 | improvement: 0.436035
+  HMM iter  25 | log-likelihood: -4757.8027 | improvement: 0.341309
+  HMM iter  26 | log-likelihood: -4757.5449 | improvement: 0.257812
+  HMM iter  27 | log-likelihood: -4757.2168 | improvement: 0.328125
+  HMM iter  28 | log-likelihood: -4757.1172 | improvement: 0.099609
+  HMM iter  29 | log-likelihood: -4756.9409 | improvement: 0.176270
+  HMM iter  30 | log-likelihood: -4756.8008 | improvement: 0.140137
+  HMM iter  31 | log-likelihood: -4756.6123 | improvement: 0.188477
+  HMM iter  32 | log-likelihood: -4756.5229 | improvement: 0.089355
+  HMM iter  33 | log-likelihood: -4756.4585 | improvement: 0.064453
+  HMM iter  34 | log-likelihood: -4756.4092 | improvement: 0.049316
+  HMM iter  35 | log-likelihood: -4756.3662 | improvement: 0.042969
+  HMM iter  36 | log-likelihood: -4756.2954 | improvement: 0.070801
+  HMM iter  37 | log-likelihood: -4756.2310 | improvement: 0.064453
+  HMM iter  38 | log-likelihood: -4756.3257 | improvement: -0.094727
+  Converged at iteration 38
+
+Learned state centers (normalized scale):
+  State 0: mean_ret=-0.085, vol=0.178
+  State 1: mean_ret=0.216, vol=1.358
+  State 2: mean_ret=0.026, vol=-0.420
+Regime distribution (train): {0: 32983, 1: 4875, 2: 44341}
+Regime weights: [1.1707189083099365, 2.0, 0.5]
+State dim: 32 features + 1 dummy = 33
+
+-------------------------------------------------------
+Training: no_factors | sharpe | hidden_dim=32
+-------------------------------------------------------
+Step   10000 | Val CR: -26.90% | Best: +0.00%
+Step   20000 | Val CR: -26.84% | Best: +0.00%
+Step   30000 | Val CR: -33.67% | Best: +0.00%
+Step   40000 | Val CR: -20.00% | Best: +0.00%
+Step   50000 | Val CR: -15.38% | Best: +0.00%
+Step   60000 | Val CR: +1.66% | Best: +1.66% ::::: new best
+Step   70000 | Val CR: +16.49% | Best: +16.49% ::::: new best
+Step   80000 | Val CR: +31.68% | Best: +31.68% ::::: new best
+Step   90000 | Val CR: +48.89% | Best: +48.89% ::::: new best
+Step  100000 | Val CR: +86.20% | Best: +86.20% ::::: new best
+Step  110000 | Val CR: +45.66% | Best: +86.20%
+Step  120000 | Val CR: +24.42% | Best: +86.20%
+Step  130000 | Val CR: +49.90% | Best: +86.20%
+Step  140000 | Val CR: +28.90% | Best: +86.20%
+Step  150000 | Val CR: +6.63% | Best: +86.20%
+Step  160000 | Val CR: +19.45% | Best: +86.20%
+Step  170000 | Val CR: +2.75% | Best: +86.20%
+Step  180000 | Val CR: +4.96% | Best: +86.20%
+Step  190000 | Val CR: +7.54% | Best: +86.20%
+Step  200000 | Val CR: +17.22% | Best: +86.20%
+Step  210000 | Val CR: +39.09% | Best: +86.20%
+Step  220000 | Val CR: +48.79% | Best: +86.20%
+Step  230000 | Val CR: +48.16% | Best: +86.20%
+Step  240000 | Val CR: +11.31% | Best: +86.20%
+Step  250000 | Val CR: +22.28% | Best: +86.20%
+Step  260000 | Val CR: -13.33% | Best: +86.20%
+Step  270000 | Val CR: +15.19% | Best: +86.20%
+Step  280000 | Val CR: +9.40% | Best: +86.20%
+Step  290000 | Val CR: +14.09% | Best: +86.20%
+Step  300000 | Val CR: +7.50% | Best: +86.20%
+Step  310000 | Val CR: +42.50% | Best: +86.20%
+Step  320000 | Val CR: +201.86% | Best: +201.86% ::::: new best
+Step  330000 | Val CR: +100.71% | Best: +201.86%
+Step  340000 | Val CR: +205.79% | Best: +205.79% ::::: new best
+Step  350000 | Val CR: +166.88% | Best: +205.79%
+Step  360000 | Val CR: +111.81% | Best: +205.79%
+Step  370000 | Val CR: +292.77% | Best: +292.77% ::::: new best
+Step  380000 | Val CR: +224.82% | Best: +292.77%
+Step  390000 | Val CR: +97.30% | Best: +292.77%
+Step  400000 | Val CR: +143.67% | Best: +292.77%
+Step  410000 | Val CR: +448.90% | Best: +448.90% ::::: new best
+Step  420000 | Val CR: +138.07% | Best: +448.90%
+Step  430000 | Val CR: +112.72% | Best: +448.90%
+Step  440000 | Val CR: +480.64% | Best: +480.64% ::::: new best
+Step  450000 | Val CR: +80.25% | Best: +480.64%
+Step  460000 | Val CR: +87.69% | Best: +480.64%
+Step  470000 | Val CR: +60.15% | Best: +480.64%
+Step  480000 | Val CR: +73.93% | Best: +480.64%
+Step  490000 | Val CR: +55.55% | Best: +480.64%
+Step  500000 | Val CR: +55.53% | Best: +480.64%
+
+Restored best model (Val CR: +480.64%)
+
+-------------------------------------------------------
+Training: no_factors | sharpe | hidden_dim=64
+-------------------------------------------------------
+Step   10000 | Val CR: +68.63% | Best: +68.63% ::::: new best
+Step   20000 | Val CR: +191.98% | Best: +191.98% ::::: new best
+Step   30000 | Val CR: +218.31% | Best: +218.31% ::::: new best
+Step   40000 | Val CR: +18.63% | Best: +218.31%
+Step   50000 | Val CR: +112.56% | Best: +218.31%
+Step   60000 | Val CR: +33.33% | Best: +218.31%
+Step   70000 | Val CR: +54.33% | Best: +218.31%
+Step   80000 | Val CR: +38.14% | Best: +218.31%
+Step   90000 | Val CR: +30.88% | Best: +218.31%
+Step  100000 | Val CR: -11.66% | Best: +218.31%
+Step  110000 | Val CR: -9.13% | Best: +218.31%
+Step  120000 | Val CR: +180.82% | Best: +218.31%
+Step  130000 | Val CR: -24.76% | Best: +218.31%
+Step  140000 | Val CR: +36.50% | Best: +218.31%
+Step  150000 | Val CR: +31.60% | Best: +218.31%
+Step  160000 | Val CR: +58.60% | Best: +218.31%
+Step  170000 | Val CR: +7.33% | Best: +218.31%
+Step  180000 | Val CR: +400.15% | Best: +400.15% ::::: new best
+Step  190000 | Val CR: +105.93% | Best: +400.15%
+Step  200000 | Val CR: +53.69% | Best: +400.15%
+Step  210000 | Val CR: +33.56% | Best: +400.15%
+Step  220000 | Val CR: +260.78% | Best: +400.15%
+Step  230000 | Val CR: -18.88% | Best: +400.15%
+Step  240000 | Val CR: +87.48% | Best: +400.15%
+Step  250000 | Val CR: +75.78% | Best: +400.15%
+Step  260000 | Val CR: -9.42% | Best: +400.15%
+Step  270000 | Val CR: +5.68% | Best: +400.15%
+Step  280000 | Val CR: +13.89% | Best: +400.15%
+Step  290000 | Val CR: -3.72% | Best: +400.15%
+Step  300000 | Val CR: +43.73% | Best: +400.15%
+Step  310000 | Val CR: +17.93% | Best: +400.15%
+Step  320000 | Val CR: -1.12% | Best: +400.15%
+Step  330000 | Val CR: +53.85% | Best: +400.15%
+Step  340000 | Val CR: +105.40% | Best: +400.15%
+Step  350000 | Val CR: +96.19% | Best: +400.15%
+Step  360000 | Val CR: +306.24% | Best: +400.15%
+Step  370000 | Val CR: +240.96% | Best: +400.15%
+Step  380000 | Val CR: +93.98% | Best: +400.15%
+Step  390000 | Val CR: +12.47% | Best: +400.15%
+Step  400000 | Val CR: +216.59% | Best: +400.15%
+Step  410000 | Val CR: +108.54% | Best: +400.15%
+Step  420000 | Val CR: +3.57% | Best: +400.15%
+Step  430000 | Val CR: +105.40% | Best: +400.15%
+Step  440000 | Val CR: +167.06% | Best: +400.15%
+Step  450000 | Val CR: +38.47% | Best: +400.15%
+Step  460000 | Val CR: +60.27% | Best: +400.15%
+Step  470000 | Val CR: +103.48% | Best: +400.15%
+Step  480000 | Val CR: +34.42% | Best: +400.15%
+Step  490000 | Val CR: +68.77% | Best: +400.15%
+Step  500000 | Val CR: +257.54% | Best: +400.15%
+
+Restored best model (Val CR: +400.15%)
+
+-------------------------------------------------------
+Training: no_factors | sharpe | hidden_dim=128
+-------------------------------------------------------
+Step   10000 | Val CR: +31.43% | Best: +31.43% ::::: new best
+Step   20000 | Val CR: -20.13% | Best: +31.43%
+Step   30000 | Val CR: -17.03% | Best: +31.43%
+Step   40000 | Val CR: -17.39% | Best: +31.43%
+Step   50000 | Val CR: -17.86% | Best: +31.43%
+Step   60000 | Val CR: +2.93% | Best: +31.43%
+Step   70000 | Val CR: -23.36% | Best: +31.43%
+Step   80000 | Val CR: +85.83% | Best: +85.83% ::::: new best
+Step   90000 | Val CR: +132.24% | Best: +132.24% ::::: new best
+Step  100000 | Val CR: -45.38% | Best: +132.24%
+Step  110000 | Val CR: -42.23% | Best: +132.24%
+Step  120000 | Val CR: -28.87% | Best: +132.24%
+Step  130000 | Val CR: -16.77% | Best: +132.24%
+Step  140000 | Val CR: -27.57% | Best: +132.24%
+Step  150000 | Val CR: +80.12% | Best: +132.24%
+Step  160000 | Val CR: -27.86% | Best: +132.24%
+Step  170000 | Val CR: +3.42% | Best: +132.24%
+Step  180000 | Val CR: +13.12% | Best: +132.24%
+Step  190000 | Val CR: +154.04% | Best: +154.04% ::::: new best
+Step  200000 | Val CR: +322.75% | Best: +322.75% ::::: new best
+Step  210000 | Val CR: +69.83% | Best: +322.75%
+Step  220000 | Val CR: +156.43% | Best: +322.75%
+Step  230000 | Val CR: +122.61% | Best: +322.75%
+Step  240000 | Val CR: +119.29% | Best: +322.75%
+Step  250000 | Val CR: +62.57% | Best: +322.75%
+Step  260000 | Val CR: +44.47% | Best: +322.75%
+Step  270000 | Val CR: +51.21% | Best: +322.75%
+Step  280000 | Val CR: +92.08% | Best: +322.75%
+Step  290000 | Val CR: +64.25% | Best: +322.75%
+Step  300000 | Val CR: +60.73% | Best: +322.75%
+Step  310000 | Val CR: +115.42% | Best: +322.75%
+Step  320000 | Val CR: +8.28% | Best: +322.75%
+Step  330000 | Val CR: +120.27% | Best: +322.75%
+Step  340000 | Val CR: +17.71% | Best: +322.75%
+Step  350000 | Val CR: -4.94% | Best: +322.75%
+Step  360000 | Val CR: -10.85% | Best: +322.75%
+Step  370000 | Val CR: +5.59% | Best: +322.75%
+Step  380000 | Val CR: -14.75% | Best: +322.75%
+Step  390000 | Val CR: +140.32% | Best: +322.75%
+Step  400000 | Val CR: +98.59% | Best: +322.75%
+Step  410000 | Val CR: +144.01% | Best: +322.75%
+Step  420000 | Val CR: +51.07% | Best: +322.75%
+Step  430000 | Val CR: +30.70% | Best: +322.75%
+Step  440000 | Val CR: +43.26% | Best: +322.75%
+Step  450000 | Val CR: +57.01% | Best: +322.75%
+Step  460000 | Val CR: +28.85% | Best: +322.75%
+Step  470000 | Val CR: +23.56% | Best: +322.75%
+Step  480000 | Val CR: +42.88% | Best: +322.75%
+Step  490000 | Val CR: +50.39% | Best: +322.75%
+Step  500000 | Val CR: +36.15% | Best: +322.75%
+
+Restored best model (Val CR: +322.75%)
+
+Results: no_factors | sharpe
+
+Strategy              Cum. Return   Sharpe     Max DD   WR vs BH  WR vs Mom  WR vs Rev
+----------------------------------------------------------------------------------
+DQN Agent                303.28%     2.27    -21.44%     52.8%     56.0%     52.0%
+Buy & Hold               114.52%     1.65    -31.62%       N/A       N/A       N/A
+Momentum                 -21.41%    -0.21    -62.46%       N/A       N/A       N/A
+Reversion                141.01%     1.60    -29.51%       N/A       N/A       N/A
+/Users/manueltorressantamaria/Library/CloudStorage/OneDrive-NortheasternUniversity/AI/Project/portfolio-optimization/src/train.py:424: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+Agent CR:     +303.28%
+Buy&Hold CR:  +114.52%
+Momentum CR:  -21.41%
+Reversion CR: +141.01%
+Excess vs BH: +188.76%
+
+Portfolio diagnostics:
+  Avg stocks picked: 15.5 / 32.4
+  Days with 0 picks: 1
+  Days with <5 picks: 22
+
+=======================================================
+Run: no_factors
+=======================================================
+Loaded 6400263 rows, 3214 stocks
+Date range: 2010-01-04 to 2021-06-30
+Dropped 2335038 NaN rows (4065225 remaining)
+Stocks with 250+ days: 1992
+PoC stocks: 50
+Total rows: 103446
+Train: 82199, Val: 9039, Test: 12208
+  HMM iter   1 | log-likelihood: -20638.2363 | improvement: inf
+  HMM iter   2 | log-likelihood: -5979.7803 | improvement: 14658.456055
+  HMM iter   3 | log-likelihood: -5403.7056 | improvement: 576.074707
+  HMM iter   4 | log-likelihood: -5101.8032 | improvement: 301.902344
+  HMM iter   5 | log-likelihood: -4997.3232 | improvement: 104.479980
+  HMM iter   6 | log-likelihood: -4884.3770 | improvement: 112.946289
+  HMM iter   7 | log-likelihood: -4840.4043 | improvement: 43.972656
+  HMM iter   8 | log-likelihood: -4822.2007 | improvement: 18.203613
+  HMM iter   9 | log-likelihood: -4810.5918 | improvement: 11.608887
+  HMM iter  10 | log-likelihood: -4801.0342 | improvement: 9.557617
+  HMM iter  11 | log-likelihood: -4792.4614 | improvement: 8.572754
+  HMM iter  12 | log-likelihood: -4784.7188 | improvement: 7.742676
+  HMM iter  13 | log-likelihood: -4778.0957 | improvement: 6.623047
+  HMM iter  14 | log-likelihood: -4772.9272 | improvement: 5.168457
+  HMM iter  15 | log-likelihood: -4768.9590 | improvement: 3.968262
+  HMM iter  16 | log-likelihood: -4766.2417 | improvement: 2.717285
+  HMM iter  17 | log-likelihood: -4764.1978 | improvement: 2.043945
+  HMM iter  18 | log-likelihood: -4762.5869 | improvement: 1.610840
+  HMM iter  19 | log-likelihood: -4761.4468 | improvement: 1.140137
+  HMM iter  20 | log-likelihood: -4760.4072 | improvement: 1.039551
+  HMM iter  21 | log-likelihood: -4759.6562 | improvement: 0.750977
+  HMM iter  22 | log-likelihood: -4759.0620 | improvement: 0.594238
+  HMM iter  23 | log-likelihood: -4758.5801 | improvement: 0.481934
+  HMM iter  24 | log-likelihood: -4758.1440 | improvement: 0.436035
+  HMM iter  25 | log-likelihood: -4757.8027 | improvement: 0.341309
+  HMM iter  26 | log-likelihood: -4757.5449 | improvement: 0.257812
+  HMM iter  27 | log-likelihood: -4757.2168 | improvement: 0.328125
+  HMM iter  28 | log-likelihood: -4757.1172 | improvement: 0.099609
+  HMM iter  29 | log-likelihood: -4756.9409 | improvement: 0.176270
+  HMM iter  30 | log-likelihood: -4756.8008 | improvement: 0.140137
+  HMM iter  31 | log-likelihood: -4756.6123 | improvement: 0.188477
+  HMM iter  32 | log-likelihood: -4756.5229 | improvement: 0.089355
+  HMM iter  33 | log-likelihood: -4756.4585 | improvement: 0.064453
+  HMM iter  34 | log-likelihood: -4756.4092 | improvement: 0.049316
+  HMM iter  35 | log-likelihood: -4756.3662 | improvement: 0.042969
+  HMM iter  36 | log-likelihood: -4756.2954 | improvement: 0.070801
+  HMM iter  37 | log-likelihood: -4756.2310 | improvement: 0.064453
+  HMM iter  38 | log-likelihood: -4756.3257 | improvement: -0.094727
+  Converged at iteration 38
+
+Learned state centers (normalized scale):
+  State 0: mean_ret=-0.085, vol=0.178
+  State 1: mean_ret=0.216, vol=1.358
+  State 2: mean_ret=0.026, vol=-0.420
+Regime distribution (train): {0: 32983, 1: 4875, 2: 44341}
+Regime weights: [1.1707189083099365, 2.0, 0.5]
+State dim: 32 features + 1 dummy = 33
+
+-------------------------------------------------------
+Training: no_factors | sharpe+regime | hidden_dim=32
+-------------------------------------------------------
+Step   10000 | Val CR: +12.06% | Best: +12.06% ::::: new best
+Step   20000 | Val CR: -4.52% | Best: +12.06%
+Step   30000 | Val CR: +9.59% | Best: +12.06%
+Step   40000 | Val CR: +1.27% | Best: +12.06%
+Step   50000 | Val CR: +1.93% | Best: +12.06%
+Step   60000 | Val CR: -4.74% | Best: +12.06%
+Step   70000 | Val CR: +27.58% | Best: +27.58% ::::: new best
+Step   80000 | Val CR: +35.27% | Best: +35.27% ::::: new best
+Step   90000 | Val CR: +23.81% | Best: +35.27%
+Step  100000 | Val CR: +32.68% | Best: +35.27%
+Step  110000 | Val CR: +20.20% | Best: +35.27%
+Step  120000 | Val CR: +21.80% | Best: +35.27%
+Step  130000 | Val CR: +44.11% | Best: +44.11% ::::: new best
+Step  140000 | Val CR: +55.40% | Best: +55.40% ::::: new best
+Step  150000 | Val CR: +81.46% | Best: +81.46% ::::: new best
+Step  160000 | Val CR: +56.11% | Best: +81.46%
+Step  170000 | Val CR: +50.85% | Best: +81.46%
+Step  180000 | Val CR: +14.11% | Best: +81.46%
+Step  190000 | Val CR: +50.42% | Best: +81.46%
+Step  200000 | Val CR: +6.73% | Best: +81.46%
+Step  210000 | Val CR: +22.21% | Best: +81.46%
+Step  220000 | Val CR: +17.28% | Best: +81.46%
+Step  230000 | Val CR: +27.45% | Best: +81.46%
+Step  240000 | Val CR: +9.35% | Best: +81.46%
+Step  250000 | Val CR: +25.13% | Best: +81.46%
+Step  260000 | Val CR: +13.73% | Best: +81.46%
+Step  270000 | Val CR: +39.00% | Best: +81.46%
+Step  280000 | Val CR: +45.17% | Best: +81.46%
+Step  290000 | Val CR: +23.01% | Best: +81.46%
+Step  300000 | Val CR: +8.82% | Best: +81.46%
+Step  310000 | Val CR: -7.78% | Best: +81.46%
+Step  320000 | Val CR: +5.10% | Best: +81.46%
+Step  330000 | Val CR: +15.30% | Best: +81.46%
+Step  340000 | Val CR: +35.23% | Best: +81.46%
+Step  350000 | Val CR: +54.07% | Best: +81.46%
+Step  360000 | Val CR: +63.19% | Best: +81.46%
+Step  370000 | Val CR: +53.16% | Best: +81.46%
+Step  380000 | Val CR: +35.84% | Best: +81.46%
+Step  390000 | Val CR: +17.86% | Best: +81.46%
+Step  400000 | Val CR: +22.34% | Best: +81.46%
+Step  410000 | Val CR: +34.71% | Best: +81.46%
+Step  420000 | Val CR: +27.20% | Best: +81.46%
+Step  430000 | Val CR: +47.89% | Best: +81.46%
+Step  440000 | Val CR: +50.48% | Best: +81.46%
+Step  450000 | Val CR: +37.03% | Best: +81.46%
+Step  460000 | Val CR: +52.47% | Best: +81.46%
+Step  470000 | Val CR: +75.17% | Best: +81.46%
+Step  480000 | Val CR: +74.95% | Best: +81.46%
+Step  490000 | Val CR: +63.29% | Best: +81.46%
+Step  500000 | Val CR: +62.17% | Best: +81.46%
+
+Restored best model (Val CR: +81.46%)
+
+-------------------------------------------------------
+Training: no_factors | sharpe+regime | hidden_dim=64
+-------------------------------------------------------
+Step   10000 | Val CR: +4.61% | Best: +4.61% ::::: new best
+Step   20000 | Val CR: -18.29% | Best: +4.61%
+Step   30000 | Val CR: +22.48% | Best: +22.48% ::::: new best
+Step   40000 | Val CR: -18.06% | Best: +22.48%
+Step   50000 | Val CR: +15.26% | Best: +22.48%
+Step   60000 | Val CR: -17.15% | Best: +22.48%
+Step   70000 | Val CR: +13.49% | Best: +22.48%
+Step   80000 | Val CR: +4.66% | Best: +22.48%
+Step   90000 | Val CR: +9.13% | Best: +22.48%
+Step  100000 | Val CR: -29.18% | Best: +22.48%
+Step  110000 | Val CR: +10.86% | Best: +22.48%
+Step  120000 | Val CR: -3.93% | Best: +22.48%
+Step  130000 | Val CR: +11.74% | Best: +22.48%
+Step  140000 | Val CR: +11.48% | Best: +22.48%
+Step  150000 | Val CR: +4.91% | Best: +22.48%
+Step  160000 | Val CR: +2.29% | Best: +22.48%
+Step  170000 | Val CR: -10.26% | Best: +22.48%
+Step  180000 | Val CR: +3.88% | Best: +22.48%
+Step  190000 | Val CR: +7.74% | Best: +22.48%
+Step  200000 | Val CR: +60.98% | Best: +60.98% ::::: new best
+Step  210000 | Val CR: +120.17% | Best: +120.17% ::::: new best
+Step  220000 | Val CR: +119.83% | Best: +120.17%
+Step  230000 | Val CR: +47.58% | Best: +120.17%
+Step  240000 | Val CR: +24.14% | Best: +120.17%
+Step  250000 | Val CR: +23.89% | Best: +120.17%
+Step  260000 | Val CR: +20.02% | Best: +120.17%
+Step  270000 | Val CR: +37.80% | Best: +120.17%
+Step  280000 | Val CR: +2.87% | Best: +120.17%
+Step  290000 | Val CR: +32.52% | Best: +120.17%
+Step  300000 | Val CR: +84.60% | Best: +120.17%
+Step  310000 | Val CR: +53.38% | Best: +120.17%
+Step  320000 | Val CR: +42.98% | Best: +120.17%
+Step  330000 | Val CR: +191.32% | Best: +191.32% ::::: new best
+Step  340000 | Val CR: +49.52% | Best: +191.32%
+Step  350000 | Val CR: +117.68% | Best: +191.32%
+Step  360000 | Val CR: +53.96% | Best: +191.32%
+Step  370000 | Val CR: +48.23% | Best: +191.32%
+Step  380000 | Val CR: +22.23% | Best: +191.32%
+Step  390000 | Val CR: +31.35% | Best: +191.32%
+Step  400000 | Val CR: +23.66% | Best: +191.32%
+Step  410000 | Val CR: +4.91% | Best: +191.32%
+Step  420000 | Val CR: -10.95% | Best: +191.32%
+Step  430000 | Val CR: +44.46% | Best: +191.32%
+Step  440000 | Val CR: +7.06% | Best: +191.32%
+Step  450000 | Val CR: +0.84% | Best: +191.32%
+Step  460000 | Val CR: -0.79% | Best: +191.32%
+Step  470000 | Val CR: +13.51% | Best: +191.32%
+Step  480000 | Val CR: +33.29% | Best: +191.32%
+Step  490000 | Val CR: +12.53% | Best: +191.32%
+Step  500000 | Val CR: +129.33% | Best: +191.32%
+
+Restored best model (Val CR: +191.32%)
+
+-------------------------------------------------------
+Training: no_factors | sharpe+regime | hidden_dim=128
+-------------------------------------------------------
+Step   10000 | Val CR: -50.58% | Best: +0.00%
+Step   20000 | Val CR: -27.03% | Best: +0.00%
+Step   30000 | Val CR: -20.22% | Best: +0.00%
+Step   40000 | Val CR: -44.03% | Best: +0.00%
+Step   50000 | Val CR: -42.95% | Best: +0.00%
+Step   60000 | Val CR: -35.84% | Best: +0.00%
+Step   70000 | Val CR: -35.65% | Best: +0.00%
+Step   80000 | Val CR: -31.77% | Best: +0.00%
+Step   90000 | Val CR: -26.83% | Best: +0.00%
+Step  100000 | Val CR: -38.94% | Best: +0.00%
+Step  110000 | Val CR: -22.65% | Best: +0.00%
+Step  120000 | Val CR: +101.37% | Best: +101.37% ::::: new best
+Step  130000 | Val CR: +85.40% | Best: +101.37%
+Step  140000 | Val CR: +181.69% | Best: +181.69% ::::: new best
+Step  150000 | Val CR: +56.04% | Best: +181.69%
+Step  160000 | Val CR: -0.49% | Best: +181.69%
+Step  170000 | Val CR: +96.81% | Best: +181.69%
+Step  180000 | Val CR: +75.97% | Best: +181.69%
+Step  190000 | Val CR: +70.46% | Best: +181.69%
+Step  200000 | Val CR: -17.39% | Best: +181.69%
+Step  210000 | Val CR: +2.97% | Best: +181.69%
+Step  220000 | Val CR: +15.77% | Best: +181.69%
+Step  230000 | Val CR: +142.20% | Best: +181.69%
+Step  240000 | Val CR: +41.11% | Best: +181.69%
+Step  250000 | Val CR: +112.85% | Best: +181.69%
+Step  260000 | Val CR: +0.99% | Best: +181.69%
+Step  270000 | Val CR: +32.22% | Best: +181.69%
+Step  280000 | Val CR: +77.88% | Best: +181.69%
+Step  290000 | Val CR: +3.64% | Best: +181.69%
+Step  300000 | Val CR: +6.72% | Best: +181.69%
+Step  310000 | Val CR: -4.71% | Best: +181.69%
+Step  320000 | Val CR: +21.64% | Best: +181.69%
+Step  330000 | Val CR: +45.31% | Best: +181.69%
+Step  340000 | Val CR: +3.28% | Best: +181.69%
+Step  350000 | Val CR: +0.04% | Best: +181.69%
+Step  360000 | Val CR: -15.33% | Best: +181.69%
+Step  370000 | Val CR: +3.77% | Best: +181.69%
+Step  380000 | Val CR: -2.82% | Best: +181.69%
+Step  390000 | Val CR: -16.23% | Best: +181.69%
+Step  400000 | Val CR: +5.78% | Best: +181.69%
+Step  410000 | Val CR: +8.67% | Best: +181.69%
+Step  420000 | Val CR: +0.91% | Best: +181.69%
+Step  430000 | Val CR: +4.94% | Best: +181.69%
+Step  440000 | Val CR: +22.50% | Best: +181.69%
+Step  450000 | Val CR: +18.57% | Best: +181.69%
+Step  460000 | Val CR: +20.03% | Best: +181.69%
+Step  470000 | Val CR: +10.50% | Best: +181.69%
+Step  480000 | Val CR: +28.13% | Best: +181.69%
+Step  490000 | Val CR: +10.70% | Best: +181.69%
+Step  500000 | Val CR: +12.82% | Best: +181.69%
+
+Restored best model (Val CR: +181.69%)
+
+Results: no_factors | sharpe+regime
+
+Strategy              Cum. Return   Sharpe     Max DD   WR vs BH  WR vs Mom  WR vs Rev
+----------------------------------------------------------------------------------
+DQN Agent                296.44%     1.53    -37.06%     55.7%     54.9%     52.3%
+Buy & Hold               114.52%     1.65    -31.62%       N/A       N/A       N/A
+Momentum                 -21.41%    -0.21    -62.46%       N/A       N/A       N/A
+Reversion                141.01%     1.60    -29.51%       N/A       N/A       N/A
+/Users/manueltorressantamaria/Library/CloudStorage/OneDrive-NortheasternUniversity/AI/Project/portfolio-optimization/src/train.py:424: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+Agent CR:     +296.44%
+Buy&Hold CR:  +114.52%
+Momentum CR:  -21.41%
+Reversion CR: +141.01%
+Excess vs BH: +181.92%
+
+Portfolio diagnostics:
+  Avg stocks picked: 16.8 / 32.4
+  Days with 0 picks: 0
+  Days with <5 picks: 9
+
+=======================================================
+Run: factors
+=======================================================
+Loaded 6400263 rows, 3214 stocks
+Date range: 2010-01-04 to 2021-06-30
+Dropped 2335038 NaN rows (4065225 remaining)
+Stocks with 250+ days: 1992
+PoC stocks: 50
+Total rows: 103446
+Train: 82199, Val: 9039, Test: 12208
+  HMM iter   1 | log-likelihood: -20638.2363 | improvement: inf
+  HMM iter   2 | log-likelihood: -5979.7803 | improvement: 14658.456055
+  HMM iter   3 | log-likelihood: -5403.7056 | improvement: 576.074707
+  HMM iter   4 | log-likelihood: -5101.8032 | improvement: 301.902344
+  HMM iter   5 | log-likelihood: -4997.3232 | improvement: 104.479980
+  HMM iter   6 | log-likelihood: -4884.3770 | improvement: 112.946289
+  HMM iter   7 | log-likelihood: -4840.4043 | improvement: 43.972656
+  HMM iter   8 | log-likelihood: -4822.2007 | improvement: 18.203613
+  HMM iter   9 | log-likelihood: -4810.5918 | improvement: 11.608887
+  HMM iter  10 | log-likelihood: -4801.0342 | improvement: 9.557617
+  HMM iter  11 | log-likelihood: -4792.4614 | improvement: 8.572754
+  HMM iter  12 | log-likelihood: -4784.7188 | improvement: 7.742676
+  HMM iter  13 | log-likelihood: -4778.0957 | improvement: 6.623047
+  HMM iter  14 | log-likelihood: -4772.9272 | improvement: 5.168457
+  HMM iter  15 | log-likelihood: -4768.9590 | improvement: 3.968262
+  HMM iter  16 | log-likelihood: -4766.2417 | improvement: 2.717285
+  HMM iter  17 | log-likelihood: -4764.1978 | improvement: 2.043945
+  HMM iter  18 | log-likelihood: -4762.5869 | improvement: 1.610840
+  HMM iter  19 | log-likelihood: -4761.4468 | improvement: 1.140137
+  HMM iter  20 | log-likelihood: -4760.4072 | improvement: 1.039551
+  HMM iter  21 | log-likelihood: -4759.6562 | improvement: 0.750977
+  HMM iter  22 | log-likelihood: -4759.0620 | improvement: 0.594238
+  HMM iter  23 | log-likelihood: -4758.5801 | improvement: 0.481934
+  HMM iter  24 | log-likelihood: -4758.1440 | improvement: 0.436035
+  HMM iter  25 | log-likelihood: -4757.8027 | improvement: 0.341309
+  HMM iter  26 | log-likelihood: -4757.5449 | improvement: 0.257812
+  HMM iter  27 | log-likelihood: -4757.2168 | improvement: 0.328125
+  HMM iter  28 | log-likelihood: -4757.1172 | improvement: 0.099609
+  HMM iter  29 | log-likelihood: -4756.9409 | improvement: 0.176270
+  HMM iter  30 | log-likelihood: -4756.8008 | improvement: 0.140137
+  HMM iter  31 | log-likelihood: -4756.6123 | improvement: 0.188477
+  HMM iter  32 | log-likelihood: -4756.5229 | improvement: 0.089355
+  HMM iter  33 | log-likelihood: -4756.4585 | improvement: 0.064453
+  HMM iter  34 | log-likelihood: -4756.4092 | improvement: 0.049316
+  HMM iter  35 | log-likelihood: -4756.3662 | improvement: 0.042969
+  HMM iter  36 | log-likelihood: -4756.2954 | improvement: 0.070801
+  HMM iter  37 | log-likelihood: -4756.2310 | improvement: 0.064453
+  HMM iter  38 | log-likelihood: -4756.3257 | improvement: -0.094727
+  Converged at iteration 38
+
+Learned state centers (normalized scale):
+  State 0: mean_ret=-0.085, vol=0.178
+  State 1: mean_ret=0.216, vol=1.358
+  State 2: mean_ret=0.026, vol=-0.420
+Regime distribution (train): {0: 32983, 1: 4875, 2: 44341}
+Regime weights: [1.1707189083099365, 2.0, 0.5]
+State dim: 32 features + 1 dummy = 33
+
+-------------------------------------------------------
+Training: factors | sharpe+regime | hidden_dim=32
+-------------------------------------------------------
+Step   10000 | Val CR: +34.40% | Best: +34.40% ::::: new best
+Step   20000 | Val CR: +73.95% | Best: +73.95% ::::: new best
+Step   30000 | Val CR: +34.56% | Best: +73.95%
+Step   40000 | Val CR: +15.65% | Best: +73.95%
+Step   50000 | Val CR: +32.40% | Best: +73.95%
+Step   60000 | Val CR: +29.43% | Best: +73.95%
+Step   70000 | Val CR: +18.29% | Best: +73.95%
+Step   80000 | Val CR: +21.17% | Best: +73.95%
+Step   90000 | Val CR: +12.44% | Best: +73.95%
+Step  100000 | Val CR: -1.69% | Best: +73.95%
+Step  110000 | Val CR: +21.54% | Best: +73.95%
+Step  120000 | Val CR: +10.87% | Best: +73.95%
+Step  130000 | Val CR: -1.88% | Best: +73.95%
+Step  140000 | Val CR: +7.89% | Best: +73.95%
+Step  150000 | Val CR: -2.67% | Best: +73.95%
+Step  160000 | Val CR: +9.46% | Best: +73.95%
+Step  170000 | Val CR: +21.85% | Best: +73.95%
+Step  180000 | Val CR: +5.30% | Best: +73.95%
+Step  190000 | Val CR: -22.61% | Best: +73.95%
+Step  200000 | Val CR: +9.08% | Best: +73.95%
+Step  210000 | Val CR: +6.68% | Best: +73.95%
+Step  220000 | Val CR: +6.03% | Best: +73.95%
+Step  230000 | Val CR: -16.30% | Best: +73.95%
+Step  240000 | Val CR: -9.60% | Best: +73.95%
+Step  250000 | Val CR: +4.13% | Best: +73.95%
+Step  260000 | Val CR: -10.67% | Best: +73.95%
+Step  270000 | Val CR: -0.63% | Best: +73.95%
+Step  280000 | Val CR: +19.62% | Best: +73.95%
+Step  290000 | Val CR: +16.29% | Best: +73.95%
+Step  300000 | Val CR: +22.60% | Best: +73.95%
+Step  310000 | Val CR: +37.04% | Best: +73.95%
+Step  320000 | Val CR: +68.02% | Best: +73.95%
+Step  330000 | Val CR: +16.89% | Best: +73.95%
+Step  340000 | Val CR: +174.69% | Best: +174.69% ::::: new best
+Step  350000 | Val CR: +63.07% | Best: +174.69%
+Step  360000 | Val CR: +50.89% | Best: +174.69%
+Step  370000 | Val CR: +55.36% | Best: +174.69%
+Step  380000 | Val CR: +25.64% | Best: +174.69%
+Step  390000 | Val CR: +22.07% | Best: +174.69%
+Step  400000 | Val CR: +32.94% | Best: +174.69%
+Step  410000 | Val CR: +94.58% | Best: +174.69%
+Step  420000 | Val CR: +90.38% | Best: +174.69%
+Step  430000 | Val CR: +85.52% | Best: +174.69%
+Step  440000 | Val CR: +83.02% | Best: +174.69%
+Step  450000 | Val CR: +28.81% | Best: +174.69%
+Step  460000 | Val CR: +24.15% | Best: +174.69%
+Step  470000 | Val CR: -2.54% | Best: +174.69%
+Step  480000 | Val CR: +1.29% | Best: +174.69%
+Step  490000 | Val CR: +21.39% | Best: +174.69%
+Step  500000 | Val CR: +15.00% | Best: +174.69%
+
+Restored best model (Val CR: +174.69%)
+
+-------------------------------------------------------
+Training: factors | sharpe+regime | hidden_dim=64
+-------------------------------------------------------
+Step   10000 | Val CR: +54.31% | Best: +54.31% ::::: new best
+Step   20000 | Val CR: +124.73% | Best: +124.73% ::::: new best
+Step   30000 | Val CR: +75.43% | Best: +124.73%
+Step   40000 | Val CR: +5.14% | Best: +124.73%
+Step   50000 | Val CR: +49.63% | Best: +124.73%
+Step   60000 | Val CR: +69.88% | Best: +124.73%
+Step   70000 | Val CR: +147.41% | Best: +147.41% ::::: new best
+Step   80000 | Val CR: -24.00% | Best: +147.41%
+Step   90000 | Val CR: +57.87% | Best: +147.41%
+Step  100000 | Val CR: -17.24% | Best: +147.41%
+Step  110000 | Val CR: -17.56% | Best: +147.41%
+Step  120000 | Val CR: -12.56% | Best: +147.41%
+Step  130000 | Val CR: +29.16% | Best: +147.41%
+Step  140000 | Val CR: +26.28% | Best: +147.41%
+Step  150000 | Val CR: +26.52% | Best: +147.41%
+Step  160000 | Val CR: +2.96% | Best: +147.41%
+Step  170000 | Val CR: +65.12% | Best: +147.41%
+Step  180000 | Val CR: +81.24% | Best: +147.41%
+Step  190000 | Val CR: +93.11% | Best: +147.41%
+Step  200000 | Val CR: +146.16% | Best: +147.41%
+Step  210000 | Val CR: +106.76% | Best: +147.41%
+Step  220000 | Val CR: +209.74% | Best: +209.74% ::::: new best
+Step  230000 | Val CR: +238.58% | Best: +238.58% ::::: new best
+Step  240000 | Val CR: +168.32% | Best: +238.58%
+Step  250000 | Val CR: +171.45% | Best: +238.58%
+Step  260000 | Val CR: +142.11% | Best: +238.58%
+Step  270000 | Val CR: +201.93% | Best: +238.58%
+Step  280000 | Val CR: +53.14% | Best: +238.58%
+Step  290000 | Val CR: +84.15% | Best: +238.58%
+Step  300000 | Val CR: +95.91% | Best: +238.58%
+Step  310000 | Val CR: -1.43% | Best: +238.58%
+Step  320000 | Val CR: -9.77% | Best: +238.58%
+Step  330000 | Val CR: +0.68% | Best: +238.58%
+Step  340000 | Val CR: -7.76% | Best: +238.58%
+Step  350000 | Val CR: +15.00% | Best: +238.58%
+Step  360000 | Val CR: +3.39% | Best: +238.58%
+Step  370000 | Val CR: +17.40% | Best: +238.58%
+Step  380000 | Val CR: +24.95% | Best: +238.58%
+Step  390000 | Val CR: +103.58% | Best: +238.58%
+Step  400000 | Val CR: -2.69% | Best: +238.58%
+Step  410000 | Val CR: +2.53% | Best: +238.58%
+Step  420000 | Val CR: +15.47% | Best: +238.58%
+Step  430000 | Val CR: -6.24% | Best: +238.58%
+Step  440000 | Val CR: -7.56% | Best: +238.58%
+Step  450000 | Val CR: -5.96% | Best: +238.58%
+Step  460000 | Val CR: +5.17% | Best: +238.58%
+Step  470000 | Val CR: +4.33% | Best: +238.58%
+Step  480000 | Val CR: -8.21% | Best: +238.58%
+Step  490000 | Val CR: +9.53% | Best: +238.58%
+Step  500000 | Val CR: +7.95% | Best: +238.58%
+
+Restored best model (Val CR: +238.58%)
+
+-------------------------------------------------------
+Training: factors | sharpe+regime | hidden_dim=128
+-------------------------------------------------------
+Step   10000 | Val CR: -4.30% | Best: +0.00%
+Step   20000 | Val CR: +34.64% | Best: +34.64% ::::: new best
+Step   30000 | Val CR: -32.09% | Best: +34.64%
+Step   40000 | Val CR: -31.07% | Best: +34.64%
+Step   50000 | Val CR: -10.28% | Best: +34.64%
+Step   60000 | Val CR: -19.44% | Best: +34.64%
+Step   70000 | Val CR: +54.20% | Best: +54.20% ::::: new best
+Step   80000 | Val CR: +181.78% | Best: +181.78% ::::: new best
+Step   90000 | Val CR: +84.85% | Best: +181.78%
+Step  100000 | Val CR: +63.61% | Best: +181.78%
+Step  110000 | Val CR: +5.73% | Best: +181.78%
+Step  120000 | Val CR: +98.70% | Best: +181.78%
+Step  130000 | Val CR: +160.58% | Best: +181.78%
+Step  140000 | Val CR: +128.56% | Best: +181.78%
+Step  150000 | Val CR: +110.65% | Best: +181.78%
+Step  160000 | Val CR: +183.52% | Best: +183.52% ::::: new best
+Step  170000 | Val CR: +118.93% | Best: +183.52%
+Step  180000 | Val CR: +109.78% | Best: +183.52%
+Step  190000 | Val CR: -12.71% | Best: +183.52%
+Step  200000 | Val CR: -28.81% | Best: +183.52%
+Step  210000 | Val CR: -18.28% | Best: +183.52%
+Step  220000 | Val CR: -35.77% | Best: +183.52%
+Step  230000 | Val CR: -21.42% | Best: +183.52%
+Step  240000 | Val CR: -13.98% | Best: +183.52%
+Step  250000 | Val CR: -1.71% | Best: +183.52%
+Step  260000 | Val CR: -15.82% | Best: +183.52%
+Step  270000 | Val CR: +3.40% | Best: +183.52%
+Step  280000 | Val CR: -17.83% | Best: +183.52%
+Step  290000 | Val CR: -27.71% | Best: +183.52%
+Step  300000 | Val CR: +3.58% | Best: +183.52%
+Step  310000 | Val CR: +13.94% | Best: +183.52%
+Step  320000 | Val CR: +26.52% | Best: +183.52%
+Step  330000 | Val CR: -13.87% | Best: +183.52%
+Step  340000 | Val CR: -3.81% | Best: +183.52%
+Step  350000 | Val CR: -29.66% | Best: +183.52%
+Step  360000 | Val CR: -26.45% | Best: +183.52%
+Step  370000 | Val CR: -28.69% | Best: +183.52%
+Step  380000 | Val CR: +5.66% | Best: +183.52%
+Step  390000 | Val CR: -10.61% | Best: +183.52%
+Step  400000 | Val CR: +72.79% | Best: +183.52%
+Step  410000 | Val CR: +107.21% | Best: +183.52%
+Step  420000 | Val CR: +24.89% | Best: +183.52%
+Step  430000 | Val CR: +16.12% | Best: +183.52%
+Step  440000 | Val CR: -20.24% | Best: +183.52%
+Step  450000 | Val CR: -16.66% | Best: +183.52%
+Step  460000 | Val CR: -18.78% | Best: +183.52%
+Step  470000 | Val CR: -37.20% | Best: +183.52%
+Step  480000 | Val CR: -14.43% | Best: +183.52%
+Step  490000 | Val CR: +94.90% | Best: +183.52%
+Step  500000 | Val CR: +106.52% | Best: +183.52%
+
+Restored best model (Val CR: +183.52%)
+
+Results: factors | sharpe+regime
+
+Strategy              Cum. Return   Sharpe     Max DD   WR vs BH  WR vs Mom  WR vs Rev
+----------------------------------------------------------------------------------
+DQN Agent                225.48%     1.87    -21.44%     48.8%     54.9%     48.5%
+Buy & Hold               114.52%     1.65    -31.62%       N/A       N/A       N/A
+Momentum                 -21.41%    -0.21    -62.46%       N/A       N/A       N/A
+Reversion                141.01%     1.60    -29.51%       N/A       N/A       N/A
+/Users/manueltorressantamaria/Library/CloudStorage/OneDrive-NortheasternUniversity/AI/Project/portfolio-optimization/src/train.py:424: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+Agent CR:     +225.48%
+Buy&Hold CR:  +114.52%
+Momentum CR:  -21.41%
+Reversion CR: +141.01%
+Excess vs BH: +110.96%
+
+Portfolio diagnostics:
+  Avg stocks picked: 16.3 / 32.4
+  Days with 0 picks: 0
+  Days with <5 picks: 18
